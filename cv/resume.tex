@@ -1,0 +1,112 @@
+\documentclass[letterpaper,10pt]{article}
+
+\IfFileExists{lmodern.sty}{\usepackage[T1]{fontenc}\usepackage{lmodern}}{}
+\usepackage[left=0.55in,right=0.55in,top=0.45in,bottom=0.45in]{geometry}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage[expansion=false]{microtype}
+\DeclareTextSymbolDefault{\textbullet}{OMS}
+
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=blue}
+\urlstyle{same}
+\pagestyle{empty}
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2.2pt}
+\setlist[itemize]{leftmargin=1.3em,itemsep=1.3pt,topsep=1.5pt,parsep=0pt,partopsep=0pt}
+\titleformat{\section}{\normalsize\bfseries\uppercase}{}{0em}{}[\vspace{-2pt}\titlerule]
+\titlespacing*{\section}{0pt}{9pt}{4.5pt}
+
+% \entry{left, bold}{right}
+\newcommand{\entry}[2]{%
+  \noindent\textbf{#1}\hfill #2\par\nopagebreak\vspace{-0.5pt}
+}
+\newcommand{\proj}[1]{\vspace{1.5pt}\textbf{\textit{#1}}}
+
+
+\begin{document}
+
+\begin{center}
+    {\LARGE\textbf{Andrei Medvedev}}\\[3pt]
+    Seattle, WA
+    \quad $|$ \quad
+    \href{mailto:am334@uw.edu}{am334@uw.edu}
+    \quad $|$ \quad
+    \href{https://github.com/mdvdvandrei}{github.com/mdvdvandrei}
+\end{center}
+\vspace{-6pt}
+
+\textbf{Research interests:} ocean circulation and climate variability, generative ocean and climate modeling, data assimilation, probabilistic reconstruction from sparse observations
+
+% =====================================================================
+\section{Education}
+
+\entry{University of Washington, Seattle, WA}{2024 -- June 2029 (expected)}
+PhD, Physical Oceanography, generative machine learning for climate and ocean state estimation. GPA 3.95/4.00\\
+Advisors: Georgy Manucharyan, Kyle Armour. NASA FINESST Fellowship (\$150,000, about 13\% selection rate)
+
+\entry{Lomonosov Moscow State University, Moscow, Russia}{2018 -- 2024}
+MS, Physics (2024), GPA 3.92/4.00, thesis on Bayesian inference of river runoff change from a multi-model climate ensemble\\
+BS, Physics and Applied Mathematics (2022), thesis on deep reinforcement learning for autonomous pursuit and interception\\
+State Scholarship (top 10\% of students)
+
+% =====================================================================
+\section{Research Experience}
+
+\entry{Graduate Research Assistant, University of Washington}{2024 -- Present}
+
+\proj{Generative data assimilation from sparse observations} (first author; \href{https://doi.org/10.22541/essoar.15011822/v1}{preprint}, \href{https://github.com/mdvdvandrei/GenDA-historical-3d-ocean-reconstruction}{code})
+\begin{itemize}
+    \item Trained a video diffusion model (EDM, cBottle architecture, 73.5M parameters) from scratch on a 50-member climate-model ensemble as a prior over coupled ocean-atmosphere trajectories on a HEALPix grid.
+    \item Sampled posteriors zero-shot via likelihood guidance from sparse, irregular observations (EN4 ocean temperature and salinity profiles), denoising all 852 months of 1950 to 2020 jointly across GPUs.
+    \item Evaluated on held-out members, a different climate model and the real ocean. Unassimilated sea level tracks satellite altimetry, and rank histograms trace ensemble underdispersion to the sampler.
+\end{itemize}
+
+\proj{AMOC changes since 1900 from sea-surface observations} (first author, \textit{Nature Geoscience}, under review)
+\begin{itemize}
+    \item Built heteroscedastic residual networks predicting Atlantic overturning strength and its variance from surface fields. Trained only on 18 climate models, they reach ${\mathbf{r = 0.82}}$ on unseen direct measurements, above reanalyses.
+    \item Showed that training on 18 simulators vs.\ 1 drives transfer to real data, and used Shapley values to tie predictions to physically meaningful regions. Found no 20th-century decline and a weakening only after 2000.
+\end{itemize}
+
+\proj{Additional projects}
+\begin{itemize}
+    \item Extended the NeurOST sea-level product (deep learning on satellite altimetry and SST) to a 2003 to 2025 record.
+    \item Trained models on \textbf{up to 32 GPUs} (NASA A100 and GH200 nodes) with PyTorch DDP, on \textbf{10+ TB} of simulations and satellite data.
+\end{itemize}
+
+\vspace{2pt}
+\entry{Research Assistant, A.M. Obukhov Institute of Atmospheric Physics, Moscow}{2022 -- 2024}
+
+% =====================================================================
+\section{Industry Experience}
+
+\entry{Machine Learning Intern (NLP), SkillCup \textnormal{(edtech startup)}}{2023}
+\begin{itemize}
+    \item Distilled a larger LLM into FRED-T5-large (820M-parameter transformer) for quiz generation from course texts and lecture transcripts, via synthetic pairs from the larger model plus a curated question bank, deployed with FastAPI.
+\end{itemize}
+
+% =====================================================================
+\section{Publications and Presentations}
+
+{\small
+\textbf{A. Medvedev}, H. Wei, K. Armour, K. Srinivasan, A. Solodoch, A. Stewart, G. Manucharyan. Basin-wide sea-surface observations indicate recent AMOC weakening without a 20th-century decline. \textit{Nature Geoscience}, under review. Preprint on \href{https://doi.org/10.22541/essoar.15002298/v1}{ESS Open Archive}.
+
+\textbf{A. Medvedev}, V. Cooper, G. Manucharyan. Reconstructing the global ocean from the historical observing record with generative data assimilation. Preprint on \href{https://doi.org/10.22541/essoar.15011822/v1}{ESS Open Archive}, to be submitted to \textit{JAMES}.
+
+H. Wei, A. Stewart, \textbf{A. Medvedev}, K. Srinivasan, A. Solodoch, G. Manucharyan, A. Hogg. Deep learning unlocks satellite-based monitoring of the global ocean overturning circulation. Preprint on \href{https://essopenarchive.org/doi/abs/10.22541/essoar.15004679}{ESS Open Archive}.
+
+\textbf{A. Medvedev}, A. Eliseev, I. Mokhov. Bayesian estimates for changes of the Russian river runoff in the 21st century as based on the CMIP6 model ensemble simulations. \textit{Izvestiya, Atmospheric and Oceanic Physics}, 2024.
+
+Presentations: AGU Fall Meeting 2026 (two oral talks); AI4Ocean Workshop 2026 (lightning talk); AGU Fall Meeting 2025 (poster).\par}
+
+% =====================================================================
+\section{Skills}
+
+\textbf{Generative models:} diffusion and video diffusion (EDM), flow matching, diffusion bridges, guided posterior sampling\\
+\textbf{Machine learning:} transformers (fine-tuning, distillation), probabilistic scoring (NLL, CRPS, rank histograms)\\
+\textbf{Environmental data:} in-situ ocean profiles, satellite altimetry and SST, CMIP6 ensembles, HEALPix grids\\
+\textbf{Engineering:} Python, PyTorch (DDP), Hydra, Bash, Git, Docker, Apptainer, PBS/Slurm; Zarr, xarray, Dask
+
+\end{document}

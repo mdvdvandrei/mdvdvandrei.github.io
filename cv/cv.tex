@@ -1,0 +1,146 @@
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[left=0.8in,right=0.8in,top=0.7in,bottom=0.7in]{geometry}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{microtype}
+\usepackage{needspace}
+
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=blue}
+\urlstyle{same}
+\pagestyle{empty}
+\linespread{1.025}
+\raggedbottom
+\clubpenalty=10000
+\widowpenalty=10000
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\renewcommand{\arraystretch}{1.08}
+\setlist[itemize]{leftmargin=1.4em,itemsep=4pt,topsep=5pt,parsep=0pt}
+\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
+\titlespacing*{\section}{0pt}{12pt}{7pt}
+
+\newcommand{\entry}[2]{%
+  \noindent\begin{tabularx}{\textwidth}{@{}X r@{}}%
+    \textbf{#1} & #2 \\
+  \end{tabularx}\par\nopagebreak
+}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE\textbf{Andrei Medvedev}}\\[5pt]
+    Seattle, WA
+    \quad $|$ \quad
+    \href{mailto:am334@uw.edu}{am334@uw.edu}
+    \quad $|$ \quad
+    \href{https://github.com/mdvdvandrei}{github.com/mdvdvandrei}
+\end{center}
+
+\section{Summary}
+University of Washington PhD student studying ocean circulation and climate variability and applying generative ML methods, mainly score-based diffusion models, to ocean and climate modeling, data assimilation, and probabilistic reconstruction from sparse observations.
+
+\section{Education}
+
+\entry{University of Washington, Seattle, WA}{2024 -- June 2029 (expected)}
+\textit{PhD in Physical Oceanography}, GPA 3.95/4.00\\
+Advisors: Georgy Manucharyan and Kyle Armour\\
+\textit{Coursework:} Geophysical Fluid Dynamics I and II, Physics of Ocean Circulation, Advanced Physical Climatology
+
+\smallskip
+\entry{Lomonosov Moscow State University, Moscow, Russia}{2022 -- 2024}
+\textit{MS in Physics, Atmospheric Physics}, GPA 3.92/4.00\\
+\textit{Thesis:} Bayesian inference of 21st-century river runoff change from a multi-model climate ensemble
+
+\smallskip
+\entry{Lomonosov Moscow State University, Moscow, Russia}{2018 -- 2022}
+\textit{BS in Physics, Applied Mathematics}\\
+\textit{Thesis:} Deep reinforcement learning for an autonomous pursuit and interception task
+
+\section{Research Experience}
+
+\entry{Graduate Research Assistant, University of Washington \textnormal{(School of Oceanography)}}{2024 -- Present}
+
+\textbf{Reconstructing the historical ocean with generative data assimilation} (first author; \href{https://doi.org/10.22541/essoar.15011822/v1}{preprint}, \href{https://github.com/mdvdvandrei/GenDA-historical-3d-ocean-reconstruction}{code})
+\begin{itemize}
+    \item Showed that historical observations determine the large-scale upper ocean back to 1950, including interior modes (Pacific thermocline tilt, Labrador Sea temperature at 1500~m), while the deep ocean, the Southern Ocean before the 1990s and Antarctic sea ice remain unconstrained.
+    \item Produced a monthly 3D ocean reconstruction for 1950 to 2020 in which unassimilated sea surface height tracks satellite altimetry and basin-scale heat content agrees with observational products after 1990.
+    \item Trained a video diffusion model (EDM, cBottle architecture, 73.5M parameters) from scratch on a 50-member climate-model ensemble and sampled posteriors via likelihood guidance (score-based data assimilation) from sparse observations, for all 852 months jointly.
+\end{itemize}
+
+\textbf{AMOC changes since 1900 from sea-surface observations} (first author, \textit{Nature Geoscience}, under review)
+\begin{itemize}
+    \item Found no statistically significant AMOC decline over the 20th century, in contrast to the widely used subpolar SST index, but a weakening over recent decades that is consistent with RAPID observations and smaller than in the climate model multi-model mean.
+    \item Showed that the absence of a 20th-century decline is consistent with compensating greenhouse-gas and aerosol forcing, and that the recent weakening is statistically significant only in the non-Ekman component.
+    \item Reconstructed AMOC at 26.5\textdegree N from basin-wide SST since the late 19th century and SSH since 1993 with deep learning trained on 18 CMIP6 models, giving yearly uncertainties and $\mathbf{r = 0.82}$ against RAPID.
+\end{itemize}
+
+\textbf{Additional projects}
+\begin{itemize}
+    \item Extended the NeurOST sea-level product (deep learning on satellite altimetry and SST) to a 2003 to 2025 record.
+\end{itemize}
+
+\smallskip
+\needspace{6\baselineskip}
+\entry{Research Assistant, A.M. Obukhov Institute of Atmospheric Physics}{2022 -- 2024}
+\textit{Advisor: Alexey V. Eliseev}
+\begin{itemize}
+    \item Applied Bayesian inference to combine climate-model projections into probabilistic estimates of 21st-century river runoff change; published in \textit{Izvestiya, Atmospheric and Oceanic Physics} (2024).
+\end{itemize}
+
+\section{Professional Experience}
+
+\entry{Machine Learning Intern (NLP), SkillCup \textnormal{(edtech startup)}}{2023}
+\begin{itemize}
+    \item Distilled a larger LLM into FRED-T5-large (820M parameters) for quiz generation from course texts and lecture transcripts, via synthetic pairs from the larger model plus a curated question bank, deployed with FastAPI.
+\end{itemize}
+
+\section{Technical Skills}
+
+\textbf{Programming:} Python, C++, Bash, Linux, Git\\
+\textbf{ML:} PyTorch (DDP), Hydra; diffusion and video diffusion (EDM), flow matching, diffusion bridges, guided posterior sampling, transformers (fine-tuning, distillation), reinforcement learning\\
+\textbf{Statistics:} Bayesian inference, stochastic processes, time-series modeling, regression with correlated noise, uncertainty calibration, proper scoring rules (CRPS, energy score), ensemble methods\\
+\textbf{Environmental data:} in-situ ocean profiles, satellite altimetry and SST, CMIP6 ensembles, HEALPix grids\\
+\textbf{Data \& Systems:} NumPy, Pandas, xarray, Dask, Zarr, NetCDF; Docker, Podman, Apptainer; PBS/Slurm
+
+\section{Publications \& Manuscripts}
+
+\textbf{A. I. Medvedev}, H. Wei, K. C. Armour, K. Srinivasan, A. Solodoch, A. L. Stewart, and G. E. Manucharyan.
+\textit{Basin-wide sea-surface observations indicate recent AMOC weakening without a 20th-century decline.}
+Under review, \textit{Nature Geoscience}. Preprint on \href{https://doi.org/10.22541/essoar.15002298/v1}{ESS Open Archive}.
+
+\smallskip
+\textbf{A. I. Medvedev}, V. T. Cooper, and G. E. Manucharyan.
+\textit{Reconstructing the global ocean from the historical observing record with generative data assimilation.}
+Preprint on \href{https://doi.org/10.22541/essoar.15011822/v1}{ESS Open Archive}, to be submitted to \textit{JAMES}.
+
+\smallskip
+H. Wei, A. L. Stewart, \textbf{A. I. Medvedev}, K. Srinivasan, A. Solodoch, G. E. Manucharyan, and A. McC. Hogg.
+\textit{Deep learning unlocks satellite-based monitoring of the global ocean overturning circulation.}
+Preprint on \href{https://essopenarchive.org/doi/abs/10.22541/essoar.15004679}{ESS Open Archive}.
+
+\smallskip
+\textbf{A. I. Medvedev}, A. V. Eliseev, and I. I. Mokhov (2024).
+\textit{Bayesian estimates of changes in Russian river runoff in the 21st century based on the CMIP6 ensemble model simulations.}
+\textit{Izvestiya, Atmospheric and Oceanic Physics}.
+
+\section{Presentations}
+
+\entry{AGU Fall Meeting \textnormal{(two oral talks, generative data assimilation and AMOC reconstruction)}}{2026}
+\entry{Graduate Climate Conference, Pack Forest, WA \textnormal{(poster, generative data assimilation)}}{2026}
+\entry{AI4Ocean Workshop \textnormal{(lightning talk, score-based data assimilation)}}{2026}
+\entry{AGU Fall Meeting \textnormal{(poster, machine learning reconstruction of historical AMOC variability)}}{2025}
+
+\section{Awards \& Fellowships}
+
+\entry{NASA FINESST Fellowship (\$150,000)}{2025 -- 2028}
+Competitive federal graduate research fellowship (about 13\% selection rate)
+
+\entry{Top-Off Award, University of Washington}{2024}
+\entry{State Scholarship, Lomonosov MSU (top 10\% of students)}{2022 -- 2023}
+
+\end{document}
